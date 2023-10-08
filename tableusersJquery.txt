@@ -1,0 +1,57 @@
+<script>
+
+// import axios from 'axios';
+import $ from 'jquery';
+
+export default {
+    data() {
+        return {
+            users: [],
+        };
+    },
+    mounted() {
+        this.fetchUsers();
+    },
+        methods: {
+            fetchUsers() {
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost/programacao-web/CriandoAPIPHP/API/connAPI.php',
+                data: {
+                    function: 'Functions/showClient',
+                },
+                success: (response) => {
+                    this.users = response.data;
+                },
+                error: (error) => {
+                    console.error(error);
+                }
+            });
+            }
+        },
+    };
+</script>
+
+
+<template>
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Cidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="user in users" :key="user.id">
+                <td style="text-align: center; padding-right: 10px;">{{ user.id }}</td>
+                <td style="text-align: center; padding-right: 10px;">{{ user.cliente || 'Nome não disponível' }}</td>
+                <td style="text-align: center; padding-right: 10px;">{{ user.email || 'E-mail não disponível' }}</td>
+                <td style="text-align: center;">{{ user.cidade || 'Cidade não disponível' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</template>
+
+  

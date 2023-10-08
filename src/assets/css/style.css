@@ -1,0 +1,17 @@
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered-table {
+    width: fit-content;
+}
+
+.ant-table-thead > tr > th {
+    text-align: center;
+}
+
+.ant-table table {
+    text-align: center;
+}
